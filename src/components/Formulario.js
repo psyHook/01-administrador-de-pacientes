@@ -1,6 +1,7 @@
 import React, { Fragment, useState } from "react";
+import uuid from 'uuid/dist/v4'
 
-const Formulario = () => {
+const Formulario = ({ crearCita }) => {
   // Crear state de citas con un obj y sus propiedades
   const [cita, setCita] = useState({
     mascota: "",
@@ -38,7 +39,16 @@ const Formulario = () => {
       setError(true)
       return;
     }
+
+    // Eliminar el mensaje previo
+    setError(false);
+
     // Asignar un ID
+    cita.id = uuid();
+    console.log(cita)
+
+    // Crear la cita
+    crearCita(cita)
   };
 
   return (
